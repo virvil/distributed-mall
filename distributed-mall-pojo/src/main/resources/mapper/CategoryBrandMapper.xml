@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="distributed.mall.pojo.mapper.CategoryBrandMapper">
+
+    <sql id="categoryBrandColumns">
+        id id,category_id categoryId,brand_id brandId
+    </sql>
+    <insert id="saveCategotyBrand" parameterType="CategoryBrand">
+        insert into CATEGORY_BRAND
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="categoryId != null">
+                category_id,
+            </if>
+            <if test="brandId != null">
+                brand_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="categoryId != null">
+                #{categoryId},
+            </if>
+            <if test="brandId != null">
+                #{brandId},
+            </if>
+        </trim>
+    </insert>
+
+    <delete id="delCategotyBrand">
+        delete from CATEGORY_BRAND
+        where id = #{id}
+    </delete>
+
+    <delete id="delCategotyBrands">
+        delete from CATEGORY_BRAND
+        where category_id = #{categoryId}
+    </delete>
+</mapper>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="distributed.mall.pojo.mapper.AddressMapper">
+
+    <sql id="addressColumns">
+        id id,user_id userId,username username,phone phone,province_id provinceId,city_id cityId,district_id districtId,
+        detail detail,post_code postCode,is_default isDefault,create_time createTime
+    </sql>
+
+    <select id="listAddress" resultType="Address">
+        select
+        <include refid="addressColumns"/>
+        from ADDRESS
+        where user_id = #{userId}
+    </select>
+
+    <select id="getAddress" resultType="Address">
+        select
+        <include refid="addressColumns"/>
+        from ADDRESS
+        where id = #{id}
+    </select>
+
+    <insert id="saveAddress" parameterType="Address">
+        insert into ADDRESS
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                user_id ,
+            </if>
+            <if test="username != null">
+                username ,
+            </if>
+            <if test="phone != null">
+                phone,
+            </if>
+            <if test="provinceId != null">
+                province_id ,
+            </if>
+            <if test="cityId != null">
+                city_id ,
+            </if>
+            <if test="districtId != null">
+                district_id,
+            </if>
+            <if test="detail != null">
+                detail ,
+            </if>
+            <if test="postCode != null">
+                post_code ,
+            </if>
+            <if test="isDefault != null">
+                is_default ,
+            </if>
+            <if test="createTime != null">
+                create_time ,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                #{userId},
+            </if>
+            <if test="username != null">
+                #{username},
+            </if>
+            <if test="phone != null">
+                #{phone},
+            </if>
+            <if test="provinceId != null">
+                 #{provinceId},
+            </if>
+            <if test="cityId != null">
+                 #{cityId},
+            </if>
+            <if test="districtId != null">
+                 #{districtId},
+            </if>
+            <if test="detail != null">
+                #{detail},
+            </if>
+            <if test="postCode != null">
+                 #{postCode},
+            </if>
+            <if test="isDefault != null">
+                #{isDefault},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updAddress" parameterType="Address">
+        update Address
+        <set>
+            <if test="username != null">
+                username = #{username},
+            </if>
+            <if test="phone != null">
+                phone = #{phone},
+            </if>
+            <if test="provinceId != null">
+                province_id = #{provinceId},
+            </if>
+            <if test="cityId != null">
+                city_id = #{cityId},
+            </if>
+            <if test="districtId != null">
+                district_id = #{districtId},
+            </if>
+            <if test="detail != null">
+                detail = #{detail},
+            </if>
+            <if test="postCode != null">
+                post_code = #{postCode},
+            </if>
+            <if test="isDefault != null">
+                is_default = #{isDefault}
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+
+    <delete id="delAddress">
+        delete from ADDRESS
+        where id = #{id}
+    </delete>
+</mapper>

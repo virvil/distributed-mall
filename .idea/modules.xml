@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/distributed-mall.iml" filepath="$PROJECT_DIR$/.idea/distributed-mall.iml" />
+      <module fileurl="file://$PROJECT_DIR$/distributed-mall-common/distributed-mall-common.iml" filepath="$PROJECT_DIR$/distributed-mall-common/distributed-mall-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/distributed-mall-manager/distributed-mall-manager.iml" filepath="$PROJECT_DIR$/distributed-mall-manager/distributed-mall-manager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/distributed-mall-parent/distributed-mall-parent.iml" filepath="$PROJECT_DIR$/distributed-mall-parent/distributed-mall-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/distributed-mall-pojo/distributed-mall-pojo.iml" filepath="$PROJECT_DIR$/distributed-mall-pojo/distributed-mall-pojo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/distributed-mall-product/distributed-mall-product.iml" filepath="$PROJECT_DIR$/distributed-mall-product/distributed-mall-product.iml" />
+      <module fileurl="file://$PROJECT_DIR$/distributed-mall-product/distributed-mall-product-api/distributed-mall-product-api.iml" filepath="$PROJECT_DIR$/distributed-mall-product/distributed-mall-product-api/distributed-mall-product-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/distributed-mall-user/distributed-mall-user-service/distributed-mall-sso-service.iml" filepath="$PROJECT_DIR$/distributed-mall-user/distributed-mall-user-service/distributed-mall-sso-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/distributed-mall-sso-web/distributed-mall-sso-web.iml" filepath="$PROJECT_DIR$/distributed-mall-sso-web/distributed-mall-sso-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/distributed-mall-user/distributed-mall-user.iml" filepath="$PROJECT_DIR$/distributed-mall-user/distributed-mall-user.iml" />
+      <module fileurl="file://$PROJECT_DIR$/distributed-mall-user/distributed-mall-user-api/distributed-mall-user-api.iml" filepath="$PROJECT_DIR$/distributed-mall-user/distributed-mall-user-api/distributed-mall-user-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/distributed-mall-user-web/distributed-mall-user-web.iml" filepath="$PROJECT_DIR$/distributed-mall-user-web/distributed-mall-user-web.iml" />
+    </modules>
+  </component>
+</project>

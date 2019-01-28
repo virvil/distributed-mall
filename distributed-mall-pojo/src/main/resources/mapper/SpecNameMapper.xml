@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="distributed.mall.pojo.mapper.SpecNameMapper">
+    <sql id="specNameColumns">
+        id id, category_id categoryId,name name
+    </sql>
+    <select id="getSpecName" resultType="SpecName">
+        select
+        <include refid="specNameColumns"/>
+        from SPEC_NAME
+        WHERE id = #{id}
+    </select>
+    <select id="listSpecNamesByCategoryId" resultType="SpecName">
+        select
+        <include refid="specNameColumns"/>
+        from SPEC_NAME
+        WHERE category_id = #{categoryId}
+    </select>
+    <select id="listSpecNamesBySpuId" resultType="SpecName">
+        select
+        t1.id id, t1.category_id categoryId,t1.name name
+        from SPEC_NAME t1 inner join SPU_SPEC_NAME t2
+        on t1.id = t2.spec_name_id
+        WHERE t2.spu_id = #{spuId}
+    </select>
+    <insert id="saveSpecName" parameterType="SpecName">
+        insert into SPEC_NAME
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id ,
+            </if>
+            <if test="categoryId != null">
+                category_id ,
+            </if>
+            <if test="name != null">
+                name ,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id} ,
+            </if>
+            <if test="categoryId != null">
+                #{categoryId} ,
+            </if>
+            <if test="name != null">
+                #{name} ,
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updSpecName" parameterType="SpecName">
+        update SPEC_NAME
+        <set>
+            <if test="categoryId != null">
+                category_id = #{categoryId},
+            </if>
+            <if test="name != null">
+                name = #{name}
+            </if>
+        </set>
+        where id =#{id}
+    </update>
+    <delete id="delSpecName">
+        delete from SPEC_NAME
+        where id =#{id}
+    </delete>
+
+    <delete id="delSpecNames">
+        delete from SPEC_NAME
+        where category_id =#{categoryId}
+    </delete>
+</mapper>

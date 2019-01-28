@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="distributed.mall.pojo.mapper.BrandMapper">
+
+    <sql id="brandColumns">
+        id id,name name,create_time createTime,update_time updateTime
+    </sql>
+    <select id="getBrand" resultType="Brand">
+        select
+        <include refid="brandColumns"/>
+        from BRAND
+        where id = #{id}
+    </select>
+
+    <select id="listBrands" resultType="Brand">
+        select
+        t1.id id,t1.name name,t1.create_time createTime,t1.update_time updateTime
+        from BRAND t1 inner join CATEGORY_BRAND t2 on t1.id = t2.brand_id
+        where t2.category_id = #{categoryId}
+    </select>
+
+    <insert id="saveBrand" parameterType="Brand">
+        insert into BRAND
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="name != null">
+                #{name},
+            </if>
+            <if test="createTime != null">
+                #{createTime},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updBrand" parameterType="Brand">
+        update BRAND
+        <set>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="delBrand">
+        delete from BRAND
+        where id = #{id}
+    </delete>
+</mapper>

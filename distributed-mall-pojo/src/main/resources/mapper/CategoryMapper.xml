@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="distributed.mall.pojo.mapper.CategoryMapper">
+
+    <sql id="categoryColumns">
+        id id,pid pid,name name, status status,sort_order sortOrder,is_parent isParent,create_time createTime,update_time updateTime
+    </sql>
+
+    <select id="getCategory" resultType="Category">
+        select
+        <include refid="categoryColumns"/>
+        from CATEGORY
+        where id = #{id}
+        order by sort_order
+    </select>
+
+    <select id="listCategorys" resultType="Category">
+        select
+        <include refid="categoryColumns"/>
+        from CATEGORY
+        where pid = #{pid}
+        order by sort_order
+    </select>
+
+    <insert id="saveCategory" parameterType="Category">
+        insert into CATEGORY
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pid != null">
+                pid,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="sortOrder != null">
+                sort_order,
+            </if>
+            <if test="isParent != null">
+                is_parent,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+
+            <if test="pid != null">
+                #{pid},
+            </if>
+            <if test="name != null">
+                #{name},
+            </if>
+            <if test="status != null">
+                #{status},
+            </if>
+            <if test="sortOrder != null">
+                #{sortOrder},
+            </if>
+            <if test="isParent != null">
+                #{isParent},
+            </if>
+            <if test="createTime != null">
+                #{createTime},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updCategory" parameterType="Category">
+        update CATEGORY
+        <set>
+            <if test="pid != null">
+                pid = #{pid},
+            </if>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="sortOrder != null">
+                sort_order= #{sortOrder},
+            </if>
+            <if test="isParent != null">
+                is_parent = #{isParent},
+            </if>
+            <if test="createTime != null">
+                create_time= #{createTime},
+            </if>
+            <if test="updateTime != null">
+                update_time= #{updateTime}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="delCategory">
+        delete from CATEGORY
+        where id = #{id}
+    </delete>
+
+    <delete id="delCategorys">
+        delete from CATEGORY
+        where pid = #{pid}
+    </delete>
+</mapper>

@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="distributed.mall.pojo.mapper.UserMapper">
+
+    <sql id="userColumns">
+        id id,username username,password password,email email,
+        phone phone,image_path imagePath,user_type userType,
+        status status,create_time createTime,update_time updateTime
+    </sql>
+
+    <sql id="roleColumns">
+        id id,name name.remark remark
+    </sql>
+
+    <sql id="permissionColumns">
+        id id,url url,name name
+    </sql>
+
+    <select id="getUserById" resultType="User">
+        select
+        <include refid="userColumns"/>
+        from user
+        where id = #{id}
+    </select>
+    <select id="findUserSelective" parameterType="User" resultType="User">
+        select
+        <include refid="userColumns"/>
+        from user
+        <where>
+            <if test="id != null">
+                id = #{id}
+            </if>
+            <if test="username != null">
+                and username = #{username}
+            </if>
+            <if test="password != null">
+                and password = #{password}
+            </if>
+            <if test="email != null">
+                and email = #{email}
+            </if>
+            <if test="imagePath != null">
+                and image_path = #{imagePath}
+            </if>
+            <if test="userType != null">
+                and  user_type = #{userType}
+            </if>
+            <if test="status != null">
+                and  status = #{status}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+
+        </where>
+    </select>
+    <select id="findAll" resultType="User">
+        select
+        <include refid="userColumns"/>
+        from user
+    </select>
+    <select id="findUserByUsernameAndPassword" resultType="User">
+        select
+        <include refid="userColumns"/>
+        from user
+        where username = #{username} and password = #{password}
+    </select>
+    <select id="findUserByUsername" resultType="User">
+        select
+        <include refid="userColumns"/>
+        from user
+        where username = #{username}
+    </select>
+    <select id="findUserByPhone" resultType="User">
+        select
+        <include refid="userColumns"/>
+        from user
+        where phone = #{phone}
+    </select>
+    <select id="findUserByEmail" resultType="User">
+        select
+        <include refid="userColumns"/>
+        from user
+        where email = #{email}
+    </select>
+    <select id="findRoleByUsername" resultType="Role">
+        select
+        t1.id,t1.name,t1.remark
+        from role t1 inner join user_role t2 on t2.rid = t1.id
+        inner join user t3 on t3.id = t2.uid and t3.username =  #{username}
+    </select>
+
+    <select id="findPermissionByUsername" resultType="Permission">
+        select
+        t1.id,t1.url,t1.name
+        from permission t1 inner join role_permission t2 on t2.pid = t1.id
+        inner join  role t3 on t3.id = t2.rid
+        inner join user_role t4 on t4.rid = t3.id
+        inner join user t5 on t5.id = t4.uid and t5.username = #{username}
+    </select>
+
+    <insert id="insertSelective">
+        insert into user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="username != null">
+                username,
+            </if>
+            <if test="password != null">
+                password,
+            </if>
+            <if test="email != null">
+                email,
+            </if>
+            <if test="phone != null">
+                phone,
+            </if>
+            <if test="imagePath != null">
+                image_path,
+            </if>
+            <if test="userType != null">
+                user_type,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="username != null" >
+                #{username},
+            </if>
+            <if test="password != null" >
+                #{password},
+            </if>
+            <if test="email != null" >
+                #{email},
+            </if>
+            <if test="phone != null" >
+                #{phone},
+            </if>
+            <if test="imagePath != null" >
+                #{imagePath},
+            </if>
+            <if test="userType != null" >
+                #{userType},
+            </if>
+            <if test="status != null" >
+                #{status},
+            </if>
+            <if test="createTime != null" >
+                #{createTime},
+            </if>
+            <if test="updateTime != null" >
+                #{updateTime},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateById">
+        update user
+        <set>
+            <if test="username != null">
+                username = #{username},
+            </if>
+            <if test="password != null">
+                password = #{password},
+            </if>
+            <if test="email != null">
+                email = #{email},
+            </if>
+            <if test="phone != null">
+                phone = #{phone},
+            </if>
+            <if test="imagePath != null">
+                image_path = #{imagePath},
+            </if>
+            <if test="userType != null">
+                user_type = #{userType},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+</mapper>

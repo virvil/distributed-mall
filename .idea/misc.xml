@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JavaScriptSettings">
+    <option name="languageLevel" value="ES6" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/distributed-mall-common/pom.xml" />
+        <option value="$PROJECT_DIR$/distributed-mall-parent/pom.xml" />
+        <option value="$PROJECT_DIR$/distributed-mall-pojo/pom.xml" />
+        <option value="$PROJECT_DIR$/distributed-mall-product/distributed-mall-product-api/pom.xml" />
+        <option value="$PROJECT_DIR$/distributed-mall-product/pom.xml" />
+        <option value="$PROJECT_DIR$/distributed-mall-sso-web/pom.xml" />
+        <option value="$PROJECT_DIR$/distributed-mall-user/pom.xml" />
+        <option value="$PROJECT_DIR$/distributed-mall-user-web/pom.xml" />
+        <option value="$PROJECT_DIR$/distributed-mall-manager/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="PDMPlugin">
+    <option name="skipTestSources" value="false" />
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_9" project-jdk-name="9.0" project-jdk-type="JavaSDK" />
+</project>

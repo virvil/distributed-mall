@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="distributed.mall.pojo.mapper.SpuSpecNameMapper">
+    <sql id="spuSpecNameColumns">
+        id id,spu_id spuId,spec_name_id specNameId
+    </sql>
+
+    <insert id="saveSpuSpecName" parameterType="SpuSpecName">
+        insert into SPU_SPEC_NAME
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="spuId != null">
+                spu_id,
+            </if>
+            <if test="specNameId != null">
+                spec_name_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="spuId != null">
+                #{spuId},
+            </if>
+            <if test="specNameId != null">
+                #{specNameId},
+            </if>
+        </trim>
+    </insert>
+
+    <delete id="delSpuSpecName">
+        delete from SPU_SPEC_NAME
+        where id = #{id}
+    </delete>
+
+    <delete id="delSpuSpecNames">
+        delete from SPU_SPEC_NAME
+        where spu_id = #{spuId}
+    </delete>
+</mapper>

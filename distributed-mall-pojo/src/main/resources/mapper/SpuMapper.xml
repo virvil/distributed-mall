@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="distributed.mall.pojo.mapper.SpuMapper">
+
+    <sql id="spuColumns">
+        id id,category_id categoryId,title title,keywords keywords,detail detail,
+        img img,price price,cost cost,status status,sort_order sortOrder,hit hit,
+        create_time createTime,update_time updateTime,brand_id brandId
+    </sql>
+
+    <select id="getSpu" resultType="Spu">
+        select
+        <include refid="spuColumns"/>
+        from SPU
+        where id = #{id}
+        order by sort_order
+    </select>
+
+    <select id="listSpuByCategoryId" resultType="Spu">
+        select
+        <include refid="spuColumns"/>
+        from SPU
+        where category_id = #{categoryId}
+        order by sort_order
+    </select>
+
+    <select id="listSpuByBrandId" resultType="Spu">
+        select
+        <include refid="spuColumns"/>
+        from SPU
+        where brand_id = #{brandId}
+        order by sort_order
+    </select>
+
+    <insert id="saveSpu" parameterType="Spu">
+        insert into SPU
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="categoryId != null">
+                category_id,
+            </if>
+            <if test="title != null">
+                title,
+            </if>
+            <if test="keywords != null">
+                keywords,
+            </if>
+            <if test="detail != null">
+                detail,
+            </if>
+            <if test="img != null">
+                img,
+            </if>
+            <if test="price != null">
+                price,
+            </if>
+            <if test="cost != null">
+                cost,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="sortOrder != null">
+                sort_order,
+            </if>
+            <if test="hit != null">
+                hit,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="brandId != null">
+                brand_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="categoryId != null">
+                #{categoryId},
+            </if>
+            <if test="title != null">
+                #{title},
+            </if>
+            <if test="keywords != null">
+                #{keywords},
+            </if>
+            <if test="detail != null">
+                #{detail},
+            </if>
+            <if test="img != null">
+                #{img},
+            </if>
+            <if test="price != null">
+                #{price},
+            </if>
+            <if test="cost != null">
+                #{cost},
+            </if>
+            <if test="status != null">
+                #{status},
+            </if>
+            <if test="sortOrder != null">
+                #{sortOrder},
+            </if>
+            <if test="hit != null">
+                #{hit},
+            </if>
+            <if test="createTime != null">
+                #{createTime},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime},
+            </if>
+            <if test="brandId != null">
+                #{brandId},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updSpu" parameterType="Spu">
+       update SPU
+       <set>
+           <if test="categoryId != null">
+               category_id = #{categoryId},
+           </if>
+           <if test="title != null">
+               title = #{title},
+           </if>
+           <if test="keywords != null">
+               keywords = #{keywords},
+           </if>
+           <if test="detail != null">
+               detail = #{detail},
+           </if>
+           <if test="img != null">
+               img = #{img},
+           </if>
+           <if test="price != null">
+               price = #{price},
+           </if>
+           <if test="cost != null">
+               cost = #{cost},
+           </if>
+           <if test="status != null">
+               status = #{status},
+           </if>
+           <if test="sortOrder != null">
+               sort_order = #{sortOrder},
+           </if>
+           <if test="hit != null">
+               hit = #{hit},
+           </if>
+           <if test="createTime != null">
+               create_time = #{createTime},
+           </if>
+           <if test="updateTime != null">
+               update_time = #{updateTime},
+           </if>
+           <if test="brandId != null">
+               brand_id = #{brandId}
+           </if>
+       </set>
+        where id =#{id}
+    </update>
+
+    <delete id="delSpu">
+        delete from SPU
+        where id=#{id}
+    </delete>
+</mapper>

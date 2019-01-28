@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="distributed.mall.pojo.mapper.OrderItemMapper">
+    <sql id="orderItemColumns">
+        id id,spu_id spuId,sku_id skuId,order_info_id orderInfoId,
+        num num,title title,price price,total total,img img
+    </sql>
+    <select id="getOrderItem" resultType="OrderItem">
+        select
+        <include refid="orderItemColumns"/>
+        from ORDER_ITEM
+        where id = #{id}
+    </select>
+
+    <select id="listOrderItem" resultType="OrderItem">
+        select
+        <include refid="orderItemColumns"/>
+        from ORDER_ITEM
+        where order_info_id = #{orderInfoId}
+    </select>
+
+    <insert id="saveOrderItem" parameterType="OrderItem">
+        insert into ORDER_ITEM
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="spuId != null">
+                spu_id,
+            </if>
+            <if test="skuId != null">
+                sku_id,
+            </if>
+            <if test="orderInfoId != null">
+                order_info_id,
+            </if>
+            <if test="num != null">
+                num,
+            </if>
+            <if test="title != null">
+                title,
+            </if>
+            <if test="price != null">
+                price,
+            </if>
+            <if test="total != null">
+                total,
+            </if>
+            <if test="img != null">
+                img,
+            </if>
+        </trim>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="spuId != null">
+                #{spuId},
+            </if>
+            <if test="skuId != null">
+                #{skuId},
+            </if>
+            <if test="orderInfoId != null">
+                #{orderInfoId},
+            </if>
+            <if test="num != null">
+                #{num},
+            </if>
+            <if test="title != null">
+                #{title},
+            </if>
+            <if test="price != null">
+                #{price},
+            </if>
+            <if test="total != null">
+                #{total},
+            </if>
+            <if test="img != null">
+                #{img},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updOrderItem" parameterType="OrderItem">
+        update ORDER_ITEM
+        <set>
+            <if test="spuId != null">
+                spu_id = #{spuId},
+            </if>
+            <if test="skuId != null">
+                sku_id = #{skuId},
+            </if>
+            <if test="orderInfoId != null">
+                order_info_id = #{orderInfoId},
+            </if>
+            <if test="num != null">
+                num = #{num},
+            </if>
+            <if test="title != null">
+                title = #{title},
+            </if>
+            <if test="price != null">
+                price = #{price},
+            </if>
+            <if test="total != null">
+                total = #{total},
+            </if>
+            <if test="img != null">
+                img = #{img}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="delOrderItem">
+        delete from ORDER_ITEM
+        where id = #{id}
+    </delete>
+
+    <delete id="delOrderItems">
+        delete  from ORDER_ITEM
+        where order_info_id = #{orderInfoId}
+    </delete>
+</mapper>

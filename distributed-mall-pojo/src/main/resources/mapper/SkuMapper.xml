@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="distributed.mall.pojo.mapper.SkuMapper">
+
+    <sql id="skuColumns">
+        id id,spu_id spuId,properties properties,price price,
+        cost cost,stock stock,weight weight,img img
+    </sql>
+    <select id="getSku" resultType="Sku">
+        select
+        <include refid="skuColumns"/>
+        from SKU
+        where id = #{id}
+    </select>
+
+    <select id="listSkus" resultType="Sku">
+        select
+        <include refid="skuColumns"/>
+        from SKU
+        where spu_id = #{spuId}
+    </select>
+
+    <insert id="saveSku" parameterType="Sku">
+        insert into SKU
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="spuId != null">
+                spu_id,
+            </if>
+            <if test="properties != null">
+                properties,
+            </if>
+            <if test="price != null">
+                price,
+            </if>
+            <if test="cost != null">
+                cost,
+            </if>
+            <if test="stock != null">
+                stock,
+            </if>
+            <if test="weight != null">
+                weight,
+            </if>
+            <if test="img != null">
+                img,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="spuId != null">
+                #{spuId},
+            </if>
+            <if test="properties != null">
+                #{properties},
+            </if>
+            <if test="price != null">
+                #{price},
+            </if>
+            <if test="cost != null">
+                #{cost},
+            </if>
+            <if test="stock != null">
+                #{stock},
+            </if>
+            <if test="weight != null">
+                #{weight},
+            </if>
+            <if test="img != null">
+                #{img},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updSku" parameterType="Sku">
+        update SKU
+        <set>
+            <if test="spuId != null">
+                spu_id = #{spuId},
+            </if>
+            <if test="properties != null">
+                properties = #{properties},
+            </if>
+            <if test="price != null">
+                price = #{price},
+            </if>
+            <if test="cost != null">
+                cost = #{cost},
+            </if>
+            <if test="stock != null">
+                stock = #{stock},
+            </if>
+            <if test="weight != null">
+                weight = #{weight},
+            </if>
+            <if test="img != null">
+                img = #{img}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="delSku">
+        delete from SKU
+        where id =#{id}
+    </delete>
+
+    <delete id="delSkus">
+        delete from SKU
+        where spu_id = #{spuId}
+    </delete>
+</mapper>

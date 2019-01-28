@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="distributed-mall-common" />
+        <module name="distributed-mall-manager" />
+        <module name="distributed-mall-pojo" />
+        <module name="distributed-mall-product-api" />
+        <module name="distributed-mall-sso-service" />
+        <module name="distributed-mall-sso-web" />
+        <module name="distributed-mall-user-api" />
+        <module name="distributed-mall-user-web" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="distributed-mall-common" target="1.8" />
+      <module name="distributed-mall-manager" target="1.8" />
+      <module name="distributed-mall-parent" target="1.8" />
+      <module name="distributed-mall-pojo" target="1.8" />
+      <module name="distributed-mall-product" target="1.8" />
+      <module name="distributed-mall-product-api" target="1.8" />
+      <module name="distributed-mall-sso-service" target="1.8" />
+      <module name="distributed-mall-sso-web" target="1.8" />
+      <module name="distributed-mall-user" target="1.8" />
+      <module name="distributed-mall-user-api" target="1.8" />
+      <module name="distributed-mall-user-web" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

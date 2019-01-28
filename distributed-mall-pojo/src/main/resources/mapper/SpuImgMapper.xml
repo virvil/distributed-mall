@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="distributed.mall.pojo.mapper.SpuImgMapper">
+
+    <sql id="spuImgColumns">
+        id id,spu_id spuId,img img,sort_order sortOrder
+    </sql>
+    <select id="getSpuImg" resultType="SpuImg">
+       select
+       <include refid="spuImgColumns"/>
+        from SPU_IMG
+        where id = #{id}
+    </select>
+
+    <select id="listSpuImgs" resultType="SpuImg">
+        select
+        <include refid="spuImgColumns"/>
+        from SPU_IMG
+        where spu_id = #{spuId}
+        order by sort_order
+    </select>
+
+    <insert id="saveSpuImg" parameterType="SpuImg">
+        insert into SPU_IMG
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="spuId != null">
+                spu_id,
+            </if>
+            <if test="img != null">
+                img,
+            </if>
+            <if test="sortOrder != null">
+                sort_order,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="spuId != null">
+                #{spuId},
+            </if>
+            <if test="img != null">
+                #{img},
+            </if>
+            <if test="sortOrder != null">
+                #{sortOrder},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updSpuImg" parameterType="SpuImg">
+        update SPU_IMG
+        <set>
+
+            <if test="spuId != null">
+                spu_id = #{spuId},
+            </if>
+            <if test="img != null">
+                img = #{img},
+            </if>
+            <if test="sortOrder != null">
+                sort_order = #{sortOrder}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="delSpuImg">
+        delete from SPU_IMG
+        where id = #{id}
+    </delete>
+
+    <delete id="delSpuImgs">
+        delete from SPU_IMG
+        where spu_id = #{spuId}
+    </delete>
+</mapper>

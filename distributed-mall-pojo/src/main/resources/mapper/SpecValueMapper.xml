@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="distributed.mall.pojo.mapper.SpecValueMapper">
+    <sql id="specValueColumns">
+        id id,spec_name_id specNameId,value value
+    </sql>
+    <select id="getSpecValue" resultType="SpecValue">
+        select
+        <include refid="specValueColumns"/>
+        from SPEC_VALUE
+        WHERE id = #{id}
+    </select>
+    <select id="listSpecValues" resultType="SpecValue">
+        select
+        <include refid="specValueColumns"/>
+        from SPEC_VALUE
+        WHERE spec_name_id = #{specNameId}
+    </select>
+
+    <insert id="saveSpecValue" parameterType="SpecValue">
+        insert into SPEC_VALUE
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="specNameId != null">
+                spec_name_id,
+            </if>
+            <if test="value != null">
+                value,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="specNameId != null">
+                #{specNameId},
+            </if>
+            <if test="value != null">
+                #{value},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updSpecValue" parameterType="SpecValue">
+        update SPEC_VALUE
+        <set>
+            <if test="specNameId != null">
+                spec_name_id = #{specNameId},
+            </if>
+            <if test="value != null">
+                value = #{value}
+            </if>
+        </set>
+        where id =#{id}
+    </update>
+
+    <delete id="delSpecValue">
+        delete from SPEC_VALUE
+        where id=#{id}
+    </delete>
+
+    <delete id="delSpecValues">
+        delete from SPEC_VALUE
+        where spec_name_value=#{specNameValue}
+    </delete>
+</mapper>

@@ -1,0 +1,35 @@
+server:
+  port: 8085
+  servlet:
+    context-path: /manager
+
+spring:
+  application:
+    name: manager-web
+  dubbo:
+    application:
+      name: manager-web
+    registry:
+      address: zookeeper://192.168.209.128:2181
+    protocol:
+      port: 20885
+    provider:
+      timeout: 5000
+    base-package: distributed.mall.manager.controller
+
+#  thymeleaf:
+#    cache: false
+#    check-template: true
+#    check-template-location: true
+#    enabled: true
+#    encoding: UTF-8
+#    mode: HTML5
+#    prefix: /templates
+#    servlet:
+#      content-type: text/html
+#    suffix: ./html
+
+
+
+
+
